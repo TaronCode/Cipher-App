@@ -1,0 +1,34 @@
+<Container>:
+    rows: 5
+    padding:5
+    orientation:"vertical"
+
+    text_to_result: result
+    text_for_result: text_result
+    Label:
+        text:"Введите текст"
+        size_hint:0.1, 0.1
+
+    TextInput:
+        id:text_result
+        multiline:False
+        size_hint:1, 1
+
+    Label:
+        text:"Результат"
+        size_hint:0.1, 0.1
+
+    Label:
+        id:result
+        size_hint:0.1, 0.8
+        text:"Yess"
+
+
+    Button:
+        size_hint: 0.25, 0.2
+        pos_hint:{"center_x":0.5, "y": 0.1}
+        text:"Шифр!"
+
+        on_release:
+            root.change_text()
+
