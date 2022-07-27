@@ -1,0 +1,92 @@
+#:import Clipboard kivy.core.clipboard.Clipboard
+<Container>:
+
+    orientation:"vertical"
+
+    text_to_result: result
+    text_for_result: text_result
+    shear_step: foot
+
+    BoxLayout:
+        MDToolbar:
+            title:"Шифр цезаря"
+            pos_hint:{"center_x": 0.5, "center_y":0.95}
+
+
+    MDIconButton:
+        icon:"content-copy"
+        pos_hint:{"center_x":0.8, "center_y":0.515}
+        on_release:
+            Clipboard.copy(text_result.text)
+
+
+    MDIconButton:
+        icon:"content-paste"
+        pos_hint:{"center_x":0.85, "center_y":0.515}
+        on_release:
+            text_result.text += Clipboard.paste()
+
+    MDIconButton:
+        icon:"backspace"
+        pos_hint:{"center_x":0.9, "center_y":0.515}
+        on_release:
+            text_result.text = ""
+
+    MDIconButton:
+        icon:"content-copy"
+        pos_hint:{"center_x":0.8, "center_y":0.02}
+        on_release:
+            Clipboard.copy(result.text)
+
+    MDIconButton:
+        icon:"content-paste"
+        pos_hint:{"center_x":0.85, "center_y":0.02}
+        on_release:
+            result.text += Clipboard.paste()
+
+    MDIconButton:
+        icon:"backspace"
+        pos_hint:{"center_x":0.9, "center_y":0.02}
+        on_release:
+            result.text = ""
+
+    MDTextField:
+        id: foot
+        hint_text:"Шаг"
+        text:"0"
+        multiline:False
+        font_size:50
+        size_hint:0.17, 0.15
+        pos_hint:{"center_x": 0.1, "center_y":0.45}
+        on_text:
+            root.step_on_text()
+
+
+
+    MDTextField:
+        hint_text:"Расшифрованный текст"
+        id:text_result
+        size_hint:1, 0.3
+        multiline:True
+        pos_hint: {"center_x": 0.5, "center_y":0.7}
+        mode:"fill"
+        fill_color:41, 39, 39, 0
+        padding:50
+        on_text:
+            root.change_text_cipher()
+
+
+    MDTextField:
+        hint_text:"Зашифрованный текст"
+        id:result
+        size_hint:1, 0.3
+        pos_hint:{"center_x": 0.5, "center_y":0.2}
+        multiline:True
+        mode:"fill"
+        fill_color:41, 39, 39, 0
+        padding:50
+        on_text:
+            root.change_text_discipher()
+
+
+
